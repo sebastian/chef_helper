@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+class RubyToJson
+  def initialize filename
+    @data = {
+      :json_class => "Chef::Role",
+      :chef_type => "role"
+    }
+    
+    proc = Proc.new {}
+    eval(File.read(filename), proc.binding) 
+  end
+
+  def method_missing(m, *args, &block) 
+    method_data = args.size == 1 ? args.first : args
+    @data[m] = method_data
+  end
+
+  def get_data
+    JSON.pretty_generate(@data)
+  end
+end
+
+filename = ARGV[0]
+filename_json = filename.gsub(".rb", ".json")
+r2j = RubyToJson.new filename
+File.write(filename_json, r2j.get_data)
