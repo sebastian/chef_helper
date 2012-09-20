@@ -23,7 +23,22 @@ class RubyToJson
   end
 end
 
+if ARGV.size == 0 then
+  puts "USAGE: #{__FILE__} <path-to>/<role-name>.rb"
+  puts "The chef_helper converts the role to json, and stores it back in the same folder as the original."
+  exit 1
+end
+
 filename = ARGV[0]
+
+unless File.exists?(filename) then
+  puts "The role #{filename} does not exist. Are you in the right directory?"
+  exit 1
+end
+
 filename_json = filename.gsub(".rb", ".json")
+puts "Converting #{filename}"
 r2j = RubyToJson.new filename
 File.write(filename_json, r2j.get_data)
+puts "        to #{filename_json}"
+puts "Done. Thanks!"
