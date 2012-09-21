@@ -6,7 +6,13 @@ class RubyToJson
   def initialize filename
     @data = {
       :json_class => "Chef::Role",
-      :chef_type => "role"
+      :chef_type => "role",
+      :name => "",
+      :description => "",
+      :default_attributes => {},
+      :override_attribetus => {},
+      :run_list => [],
+      :env_run_lists => {}
     }
     
     proc = Proc.new {}

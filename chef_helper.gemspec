@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'chef_helper'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2012-09-20'
   s.summary     = "Helper scripts for chef-solo."
   s.description = "Helper scripts for chef-solo. Currently only installs a recipe2json executable which converts your ruby recipies to json recipes"
